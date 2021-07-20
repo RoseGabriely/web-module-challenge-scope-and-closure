@@ -160,16 +160,21 @@ function scoreboard(scorecb, inningcb, innings) {
   const eachInning = [];
   let totalHome = 0;
   let totalAway = 0;
+  let homeScore = 0;
+  let awayScore = 0;
   
   for (let i = 0; i < innings; i++) {
+
+    const currentScore = scorecb(inningcb);
     
-    // `Inning ${i+1}: ${eachInning.push(scorecb(inningcb))}`
-    eachInning.push(scorecb(inningcb))
+    homeScore = currentScore.Home;
+    awayScore = currentScore.Away;
 
-    totalAway += eachInning[i].Away
-    totalHome += eachInning[i].Home
+    totalAway += currentScore.Away;
+    totalHome += currentScore.Home;
+
+    eachInning.push(`Inning ${i+1}: Away ${awayScore} - Home ${homeScore}`);
   
-
     if (i === innings - 1 && totalHome === totalAway) {
       eachInning.push(`This game will require extra innings: Away ${totalAway} - Home ${totalHome}` );
     }else if (i === innings - 1 && totalHome != totalAway) {
@@ -179,7 +184,8 @@ function scoreboard(scorecb, inningcb, innings) {
   return eachInning;
 }
 
-console.log('task 5:', scoreboard(getInningScore, inning, 3));
+console.log('task 5:', scoreboard(getInningScore, inning, 9));
+
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
