@@ -107,8 +107,8 @@ Use the getInningScore() function below to do the following:
 
 function getInningScore(inningcb) {
   let scoreboard = {
-    "Home": inningcb(),
     "Away": inningcb(),
+    "Home": inningcb(),
   }
   return scoreboard;
 }
@@ -158,18 +158,17 @@ Use the scoreboard function below to do the following:
 
 function scoreboard(scorecb, inningcb, innings) {
   const eachInning = [];
-  let Home = 0;
-  let Away = 0;
   let totalHome = 0;
   let totalAway = 0;
   
   for (let i = 0; i < innings; i++) {
     
-    `Inning ${i+1}: ${eachInning.push(scorecb(inningcb))}`
+    // `Inning ${i+1}: ${eachInning.push(scorecb(inningcb))}`
+    eachInning.push(scorecb(inningcb))
 
-    totalHome += eachInning[i].Home
     totalAway += eachInning[i].Away
-    
+    totalHome += eachInning[i].Home
+  
 
     if (i === innings - 1 && totalHome === totalAway) {
       eachInning.push(`This game will require extra innings: Away ${totalAway} - Home ${totalHome}` );
@@ -180,7 +179,7 @@ function scoreboard(scorecb, inningcb, innings) {
   return eachInning;
 }
 
-console.log('task 5:', scoreboard(getInningScore, inning, 6));
+console.log('task 5:', scoreboard(getInningScore, inning, 3));
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
